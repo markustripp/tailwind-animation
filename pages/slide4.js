@@ -1,0 +1,82 @@
+import { Transition } from '@headlessui/react'
+import { useId, useState } from 'react'
+
+const Page = () => {
+  const [show, setShow] = useState(false)
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [email, setEmail] = useState('')
+
+  return (
+    <>
+      <div className="mx-auto my-16 flex max-w-md justify-center">
+        <Button onClick={() => setShow(!show)}>Register</Button>
+      </div>
+      <Transition.Root className="mx-auto my-16 max-w-md space-y-4" show={show}>
+        <FadeIn delay="delay-[0ms]">
+          <Input
+            label="First name"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+          />
+        </FadeIn>
+        <FadeIn delay="delay-[300ms]">
+          <Input
+            label="Last name"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+          />
+        </FadeIn>
+        <FadeIn delay="delay-[500ms]">
+          <Input
+            label="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </FadeIn>
+      </Transition.Root>
+    </>
+  )
+}
+
+const FadeIn = ({ delay, children }) => (
+  <Transition.Child
+    enter={`transition-all ease-in-out duration-700 ${delay}`}
+    enterFrom="opacity-0 translate-y-6"
+    enterTo="opacity-100 translate-y-0"
+    leave="transition-all ease-in-out duration-300"
+    leaveFrom="opacity-100"
+    leaveTo="opacity-0"
+  >
+    {children}
+  </Transition.Child>
+)
+
+const Button = ({ children, ...props }) => (
+  <button
+    className="rounded-md bg-blue-500 px-6 py-3 text-white hover:bg-blue-600"
+    {...props}
+  >
+    {children}
+  </button>
+)
+
+const Input = ({ label, ...props }) => {
+  const inputId = useId()
+
+  return (
+    <div>
+      <label htmlFor={inputId}>{label}</label>
+      <div className="mt-1">
+        <input
+          type="text"
+          id={inputId}
+          className="w-full rounded-md border-2"
+          {...props}
+        />
+      </div>
+    </div>
+  )
+}
+
+export default Page
