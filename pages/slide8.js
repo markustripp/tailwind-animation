@@ -9,46 +9,51 @@ const Page = () => {
 
   return (
     <>
-      <div className="mx-auto my-16 flex max-w-md justify-start">
+      <div className="mx-auto my-16 flex max-w-md justify-center">
         <Button onClick={() => setShow(!show)}>Register</Button>
       </div>
-      <Transition.Root show={show}>
-        <BackgroundLayer />
-        <SlideOverLayer>
+      <Animate show={show}>
+        <SlideOver>
           <h2 className="my-6 text-2xl font-bold">Register</h2>
           <div className="space-y-4">
-            <FadeIn delay="delay-[300ms]">
-              <Input
-                label="First name"
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-              />
-            </FadeIn>
-            <FadeIn delay="delay-[600ms]">
-              <Input
-                label="Last name"
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-              />
-            </FadeIn>
-            <FadeIn delay="delay-[800ms]">
-              <Input
-                label="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </FadeIn>
+            <Animate.Group timing="linear">
+              <FadeIn>
+                <Input
+                  label="First name"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                />
+              </FadeIn>
+              <FadeIn>
+                <Input
+                  label="Last name"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                />
+              </FadeIn>
+              <FadeIn>
+                <Input
+                  label="Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </FadeIn>
+            </Animate.Group>
           </div>
           <div className="my-6">
             <FadeIn delay="delay-[900ms]">
               <Button onClick={() => setShow(false)}>Close</Button>
             </FadeIn>
           </div>
-        </SlideOverLayer>
-      </Transition.Root>
+        </SlideOver>
+      </Animate>
     </>
   )
 }
+
+const Animate = ({ show, children }) => (
+  <Transition.Root show={show}>{children}</Transition.Root>
+)
 
 const BackgroundLayer = () => (
   <Transition.Child
@@ -63,28 +68,31 @@ const BackgroundLayer = () => (
   </Transition.Child>
 )
 
-const SlideOverLayer = ({ children }) => (
-  <Transition.Child
-    as={Fragment}
-    enter="transform transition ease-in-out duration-500"
-    enterFrom="translate-x-full"
-    enterTo="translate-x-0"
-    leave="transform transition ease-in-out duration-500 delay-100"
-    leaveFrom="translate-x-0"
-    leaveTo="translate-x-full"
-  >
-    <div className="fixed inset-0 overflow-hidden">
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
-          <div className="pointer-events-auto w-screen max-w-2xl">
-            <div className="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
-              <div className="px-4 sm:px-6">{children}</div>
+const SlideOver = ({ children }) => (
+  <>
+    <BackgroundLayer />
+    <Transition.Child
+      as={Fragment}
+      enter="transform transition ease-in-out duration-500"
+      enterFrom="translate-x-full"
+      enterTo="translate-x-0"
+      leave="transform transition ease-in-out duration-500 delay-100"
+      leaveFrom="translate-x-0"
+      leaveTo="translate-x-full"
+    >
+      <div className="fixed inset-0 overflow-hidden">
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
+            <div className="pointer-events-auto w-screen max-w-2xl">
+              <div className="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
+                <div className="px-4 sm:px-6">{children}</div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </Transition.Child>
+    </Transition.Child>
+  </>
 )
 
 const FadeIn = ({ delay, children }) => (
