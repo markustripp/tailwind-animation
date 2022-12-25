@@ -5,7 +5,6 @@ const Page = () => {
   const [show, setShow] = useState(false)
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
-  const [email, setEmail] = useState('')
 
   return (
     <>
@@ -28,13 +27,6 @@ const Page = () => {
                 label="Last name"
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
-              />
-            </FadeIn>
-            <FadeIn delay="delay-[800ms]">
-              <Input
-                label="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
               />
             </FadeIn>
           </div>
