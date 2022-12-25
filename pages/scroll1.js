@@ -16,12 +16,6 @@ const Page = () => {
           <p className="text-gray-300">Here is the scroll effect.</p>
         </div>
       </div>
-      <div className="flex h-screen items-center justify-center">
-        <div className="w-full max-w-lg space-y-4 rounded-xl bg-gray-500 p-24 text-white">
-          <h3 className="text-3xl font-bold">Third page</h3>
-          <p className="text-gray-300">Here is the scroll effect.</p>
-        </div>
-      </div>
     </>
   )
 }
