@@ -1,5 +1,4 @@
 import { Transition } from '@headlessui/react'
-import { Fragment } from 'react'
 import { InView } from 'react-intersection-observer'
 
 const Page = () => {

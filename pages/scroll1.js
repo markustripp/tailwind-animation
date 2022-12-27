@@ -6,7 +6,6 @@ const Page = () => {
           <h3 className="text-3xl font-bold">Scroll Animate Demo</h3>
           <p className="text-gray-300">
             Please scroll down to the next page to see the fade-in effect.
-            asldfkj asldf alsdkfj alsdfkj lasldkfjasdf asdf asdf
           </p>
         </div>
       </div>
