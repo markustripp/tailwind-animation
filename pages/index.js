@@ -23,7 +23,10 @@ const Home = () => {
       <div className="prose prose-slate mx-auto max-w-xl">
         <h1>Animation with TailwindCSS and Headless UI Transition</h1>
         <p>
-          See my article on <a href="https://markustripp.medium.com">Medium</a>
+          See my article on{' '}
+          <a href="https://medium.com/@markustripp/animations-with-tailwind-css-c47534e57a18">
+            Medium
+          </a>
         </p>
         <h2>SlideOver With Animated Form Example</h2>
         <ul>
