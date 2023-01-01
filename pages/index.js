@@ -30,16 +30,16 @@ const Home = () => {
         </p>
         <h2>SlideOver With Animated Form Example</h2>
         <ul>
-          {slideLinks.map((item) => (
-            <li>
+          {slideLinks.map((item, index) => (
+            <li key={index}>
               <Link href={item.href}>{item.title}</Link>
             </li>
           ))}
         </ul>
         <h2>Animate On Entering Viewport</h2>
         <ul>
-          {scrollLinks.map((item) => (
-            <li>
+          {scrollLinks.map((item, index) => (
+            <li key={index}>
               <Link href={item.href}>{item.title}</Link>
             </li>
           ))}
